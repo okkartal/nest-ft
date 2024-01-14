@@ -18,6 +18,7 @@ describe('AppController (e2e)', () => {
   it('/ (GET)', () => {
     return request(app.getHttpServer())
       .get('/')
+      .set('X-API-KEY', 'THIS IS YOUR FIRST API KEY')
       .expect(200)
       .expect('Hello World!');
   });

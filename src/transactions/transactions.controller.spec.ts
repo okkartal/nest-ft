@@ -12,10 +12,12 @@ describe('TransactionsController', () => {
   beforeEach(async () => {
     const module: TestingModule = await Test.createTestingModule({
       imports: [
-        AccountsModule, 
-        MongooseModule.forFeature([{ name: 'Transaction', schema: TransactionSchema}]),
-        MongooseModule.forRoot(config.mongoUri)
-      ],  
+        AccountsModule,
+        MongooseModule.forFeature([
+          { name: 'Transaction', schema: TransactionSchema },
+        ]),
+        MongooseModule.forRoot(config.mongoUri),
+      ],
       controllers: [TransactionsController],
       providers: [TransactionsService],
     }).compile();

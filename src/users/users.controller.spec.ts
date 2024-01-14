@@ -10,8 +10,10 @@ describe('UsersController', () => {
 
   beforeEach(async () => {
     const module: TestingModule = await Test.createTestingModule({
-      imports: [MongooseModule.forFeature([{ name: 'User', schema: UserSchema}]),
-      MongooseModule.forRoot(config.mongoUri)],
+      imports: [
+        MongooseModule.forFeature([{ name: 'User', schema: UserSchema }]),
+        MongooseModule.forRoot(config.mongoUri),
+      ],
       controllers: [UsersController],
       providers: [UsersService],
     }).compile();
