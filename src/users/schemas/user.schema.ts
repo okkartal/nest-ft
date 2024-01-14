@@ -1,5 +1,5 @@
 import { Prop, Schema, SchemaFactory } from "@nestjs/mongoose"; 
-import { BaseSchema } from "src/shared/schemas/base-schema";
+import { BaseSchema } from "../../shared/schemas/base-schema";
 
 @Schema()
 export class User  extends BaseSchema {

@@ -1,10 +1,10 @@
 import { BadRequestException, Inject, Injectable, NotFoundException, OnModuleInit, Req } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
 import { Model, Types } from 'mongoose';
-import { transactionTypes } from 'src/config/transaction-types';
-import { User } from 'src/users/schemas/user.schema';
-import { UsersService } from 'src/users/users.service';
-import { Account } from './schemas/account.schema';
+import { transactionTypes } from '../config/transaction-types';
+import { User } from '../users/schemas/user.schema';
+import { UsersService } from '../users/users.service';
+import { Account } from '../accounts/schemas/account.schema';
 
 @Injectable()
 export class AccountsService implements OnModuleInit {
