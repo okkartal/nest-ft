@@ -14,12 +14,12 @@ export class TransactionsService {
   ) {}
 
   async findAll(): Promise<Transaction[]> {
-    return await this.transactionModel.find({}, { __v: 0}).exec();
+    return await this.transactionModel.find({}, { __v: 0 }).exec();
   }
 
   async findByAccountId(accountId: string): Promise<Transaction[]> {
     return await this.transactionModel
-      .find({ accountId: new Types.ObjectId(accountId) }, { __v: 0})
+      .find({ accountId: new Types.ObjectId(accountId) }, { __v: 0 })
       .exec();
   }
 
@@ -37,11 +37,19 @@ export class TransactionsService {
   }
 
   async withDrawFunds(accountId: string, amount: number): Promise<boolean> {
-    return await this.makeTransaction(accountId, transactionTypes.WITHDRAW, amount);
+    return await this.makeTransaction(
+      accountId,
+      transactionTypes.WITHDRAW,
+      amount,
+    );
   }
 
   async depositFunds(accountId: string, amount: number): Promise<boolean> {
-    return await this.makeTransaction(accountId, transactionTypes.DEPOSIT, amount);
+    return await this.makeTransaction(
+      accountId,
+      transactionTypes.DEPOSIT,
+      amount,
+    );
   }
 
   async create(transaction: Transaction): Promise<Transaction> {

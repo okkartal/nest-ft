@@ -11,11 +11,12 @@ import { config } from './config/config';
 
 @Module({
   imports: [
-  ConfigModule.forRoot(),
-  MongooseModule.forRoot(config.mongoUri), 
-  UsersModule, 
-  AccountsModule, 
-  TransactionsModule],
+    ConfigModule.forRoot(),
+    MongooseModule.forRoot(config.mongoUri),
+    UsersModule,
+    AccountsModule,
+    TransactionsModule,
+  ],
   controllers: [AppController],
   providers: [AppService],
 })
@@ -23,5 +24,4 @@ export class AppModule implements NestModule {
   configure(consumer: MiddlewareConsumer) {
     consumer.apply(ApiKeyMiddleware).forRoutes('*');
   }
-
 }

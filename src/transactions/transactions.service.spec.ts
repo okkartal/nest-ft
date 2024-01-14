@@ -1,4 +1,3 @@
-import { Inject } from '@nestjs/common';
 import { MongooseModule } from '@nestjs/mongoose';
 import { Test, TestingModule } from '@nestjs/testing';
 import { AccountsModule } from '../accounts/accounts.module';
@@ -12,10 +11,12 @@ describe('TransactionsService', () => {
   beforeEach(async () => {
     const module: TestingModule = await Test.createTestingModule({
       imports: [
-        AccountsModule, 
-        MongooseModule.forFeature([{ name: 'Transaction', schema: TransactionSchema}]),
-        MongooseModule.forRoot(config.mongoUri)
-      ],  
+        AccountsModule,
+        MongooseModule.forFeature([
+          { name: 'Transaction', schema: TransactionSchema },
+        ]),
+        MongooseModule.forRoot(config.mongoUri),
+      ],
       providers: [TransactionsService],
     }).compile();
 

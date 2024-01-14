@@ -1,4 +1,10 @@
-import { BadRequestException, Inject, Injectable, NotFoundException, OnModuleInit, Req } from '@nestjs/common';
+import {
+  BadRequestException,
+  Inject,
+  Injectable,
+  NotFoundException,
+  OnModuleInit,
+} from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
 import { Model, Types } from 'mongoose';
 import { transactionTypes } from '../config/transaction-types';
@@ -70,30 +76,31 @@ export class AccountsService implements OnModuleInit {
       .exec();
   }
 
-  async updateBalance(
-    accountId: string,
-    type: string,
-    amount: number,
-  ) {
+  async updateBalance(accountId: string, type: string, amount: number) {
     const accountBsonId = new Types.ObjectId(accountId);
-    const account =  await this.accountModel
+    const account = await this.accountModel
       .findOne({ _id: accountBsonId })
       .exec();
-     
+
     if (account == null) {
       throw new NotFoundException('Account not found');
-    } 
-    
-    let newBalance = this.calculateBalance(type, account.balance, amount);
+    }
 
-    this.accountModel.updateOne({ _id: accountBsonId }, { $set: { balance: newBalance } }).exec();
+    const newBalance = this.calculateBalance(type, account.balance, amount);
+
+    this.accountModel
+      .updateOne({ _id: accountBsonId }, { $set: { balance: newBalance } })
+      .exec();
     return true;
   }
 
-  calculateBalance(type: string, currentBalance: number, amount: number) : number {
-   
+  calculateBalance(
+    type: string,
+    currentBalance: number,
+    amount: number,
+  ): number {
     if (type === transactionTypes.DEPOSIT) {
-      return (currentBalance + amount);
+      return currentBalance + amount;
     } else {
       if (amount > currentBalance) {
         throw new BadRequestException('Insufficient funds');

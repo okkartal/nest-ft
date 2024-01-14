@@ -9,10 +9,10 @@ export class AccountsController {
   @Get()
   findAll(): Promise<Account[]> {
     return this.accountsService.findAll();
-  } 
+  }
 
   @Get(':userId')
-  async accountBalance(@Param('userId') userId: string): Promise<Account[]>{
+  async accountBalance(@Param('userId') userId: string): Promise<Account[]> {
     return this.accountsService.accountBalance(userId);
   }
 }

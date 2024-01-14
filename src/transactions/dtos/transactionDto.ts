@@ -1,12 +1,12 @@
-import { IsMongoId, IsNotEmpty, IsPositive, IsString } from "class-validator";
+import { IsMongoId, IsNotEmpty, IsPositive, IsString } from 'class-validator';
 
 export class TransactionDto {
-    @IsString()
-    @IsNotEmpty()
-    @IsMongoId()
-    accountId: string;
+  @IsString()
+  @IsNotEmpty()
+  @IsMongoId()
+  accountId: string;
 
-    @IsPositive()
-    @IsNotEmpty()
-    amount: number;
+  @IsPositive()
+  @IsNotEmpty()
+  amount: number;
 }

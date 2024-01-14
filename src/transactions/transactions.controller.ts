@@ -14,11 +14,12 @@ import { Response } from 'express';
 
 @Controller('/api/transactions')
 export class TransactionsController {
-  
   constructor(private readonly transactionsService: TransactionsService) {}
 
   @Get(':accountId')
-  async accountBalance(@Param('accountId') accountId: string): Promise<Transaction[]>{
+  async accountBalance(
+    @Param('accountId') accountId: string,
+  ): Promise<Transaction[]> {
     return this.transactionsService.findByAccountId(accountId);
   }
 
@@ -29,21 +30,21 @@ export class TransactionsController {
 
   @Post('/withdrawFunds')
   withdrawFunds(@Body() transaction: TransactionDto, @Res() res: Response) {
-    return this.transactionsService.withDrawFunds(
-      transaction.accountId,
-      transaction.amount,
-    )
-    .then(() => res.status(HttpStatus.OK).json({ message:'withdraw is completed' }))
-    .catch((err) => res.status(400).json({ message: err }));
+    return this.transactionsService
+      .withDrawFunds(transaction.accountId, transaction.amount)
+      .then(() =>
+        res.status(HttpStatus.OK).json({ message: 'withdraw is completed' }),
+      )
+      .catch((err) => res.status(400).json({ message: err }));
   }
 
   @Post('/depositFunds')
   depositFunds(@Body() transaction: TransactionDto, @Res() res: Response) {
-    return this.transactionsService.depositFunds(
-      transaction.accountId,
-      transaction.amount,
-    )
-    .then(() => res.status(HttpStatus.OK).json({ message:'deposit is completed' }))
-    .catch((err) => res.status(400).json({ message: err }));;
+    return this.transactionsService
+      .depositFunds(transaction.accountId, transaction.amount)
+      .then(() =>
+        res.status(HttpStatus.OK).json({ message: 'deposit is completed' }),
+      )
+      .catch((err) => res.status(400).json({ message: err }));
   }
 }

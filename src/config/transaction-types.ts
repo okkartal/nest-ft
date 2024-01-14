@@ -1,4 +1,4 @@
 export const transactionTypes = {
-    DEPOSIT : 'deposit',
-    WITHDRAW: 'withdraw'
+  DEPOSIT: 'deposit',
+  WITHDRAW: 'withdraw',
 };
