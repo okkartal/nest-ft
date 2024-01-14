@@ -1,6 +1,6 @@
 import { NestMiddleware } from "@nestjs/common";
 import { Request, Response, NextFunction } from "express";
-import { config } from "src/config/config";
+import { config } from "../config/config";
 
 export class ApiKeyMiddleware implements NestMiddleware {
     use(req: Request, res: Response, next: NextFunction){
