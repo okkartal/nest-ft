@@ -1,8 +1,8 @@
 import { Inject, Injectable } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
 import { Model, Types } from 'mongoose';
-import { AccountsService } from 'src/accounts/accounts.service';
-import { transactionTypes } from 'src/config/transaction-types';
+import { AccountsService } from '../accounts/accounts.service';
+import { transactionTypes } from '../config/transaction-types';
 import { Transaction } from './schemas/transaction.schema';
 
 @Injectable()
